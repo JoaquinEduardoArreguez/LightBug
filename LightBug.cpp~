@@ -1,0 +1,20 @@
+/*
+  Morse.cpp - Library for flashing Morse code.
+  Created by David A. Mellis, November 2, 2007.
+  Released into the public domain.
+*/
+
+#include "LightBug.h"
+
+LightBug::LightBug(unsigned char pinRed,unsigned char pinGreen,unsigned char pinBlue){
+	_pinRed = pinRed;
+	_pinBlue = pinBlue;
+	_pinGreen = pinGreen;
+	&PORTB = 0b00000000;
+	DDRB = (1<<_pinRed) | (1<<_pinBlue) | (1<<_pinGreen);
+	//PORTB = (1<<_pinRed) | (1<<_pinBlue) | (1<<_pinGreen);
+}
+
+void LightBug::red(unsigned char power){PORTB |= (power<<_pinRed);}
+void LightBug::blue(unsigned char power){PORTB |= (power<<_pinBlue);}
+void LightBug::green(unsigned char power){PORTB |= (power<<_pinGreen);}
